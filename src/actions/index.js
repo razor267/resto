@@ -7,8 +7,14 @@ const menuLoaded = (newMenu) => {
 
 const menuRequested = () => {
     return {
-        type: 'MENU_REQUESTED',
+        type: 'MENU_REQUESTED'
     };
 };
 
-export {menuLoaded, menuRequested};
+const menuError = () => {
+    return {
+        type: 'MENU_ERROR'
+    };
+};
+
+export {menuLoaded, menuRequested, menuError};

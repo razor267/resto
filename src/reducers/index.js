@@ -1,6 +1,7 @@
 const initialState = {
     menu: [],
-    loading: true
+    loading: true,
+    error: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -14,6 +15,10 @@ const reducer = (state = initialState, action) => {
             return {
                 menu: state.menu,
                 loading: true
+            };
+        case 'MENU_ERROR':
+            return {
+                error: true
             };
         default:
             return state;

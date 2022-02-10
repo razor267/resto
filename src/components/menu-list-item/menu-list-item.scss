@@ -29,6 +29,12 @@
             font-weight: 700;
         }
     }
+    &__category__logo {
+        position: relative;
+        width: 40px;
+        left: 120px;
+        top: -70px
+    }
     &__btn {
         width: 150px;
         height: 40px;
