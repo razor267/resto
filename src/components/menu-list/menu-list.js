@@ -36,7 +36,7 @@ class MenuList extends Component {
                         return <MenuListItem
                             key={menuItem.id}
                             menuItem={menuItem}
-                            onAddToCard={() => addedToCard(menuItem.id)}/>
+                            onAddToCard={() => addedToCard(menuItem.id, menuItem.price)}/>
                     })
                 }
             </ul>

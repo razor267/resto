@@ -16,7 +16,7 @@ const CartTable = ({items, deleteFromCard}) => {
                                 <img src={url} className="cart__item-img" alt={title}></img>
                                 <div className="cart__item-title">{title}</div>
                                 <div className="cart__item-price">{price}$</div>
-                                <div onClick={() => deleteFromCard(id)} className="cart__close">&times;</div>
+                                <div onClick={() => deleteFromCard(id, price)} className="cart__close">&times;</div>
                             </div>
                         )
                     })

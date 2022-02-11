@@ -2,7 +2,8 @@ const initialState = {
     menu: [],
     loading: true,
     error: false,
-    items: []
+    items: [],
+    total: 0
 }
 
 const reducer = (state = initialState, action) => {
@@ -38,7 +39,8 @@ const reducer = (state = initialState, action) => {
                 items: [
                     ...state.items,
                     newItem
-                ]
+                ],
+                total: state.total + action.price
             };
         case 'ITEM_REMOVE_FROM_CARD':
             const idx = action.payload;
@@ -48,7 +50,8 @@ const reducer = (state = initialState, action) => {
                 items: [
                     ...state.items.slice(0, itemIndex),
                     ...state.items.slice(itemIndex + 1)
-                ]
+                ],
+                total: state.total - action.price
             }
         default:
             return state;

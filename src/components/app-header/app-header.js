@@ -2,8 +2,10 @@ import React from 'react';
 import cartIcon from './shopping-cart-solid.svg';
 import './app-header.scss';
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 
 const AppHeader = ({total}) => {
+    debugger
     return (
         <header className="header">
             <Link to='/menu'>
@@ -21,4 +23,10 @@ const AppHeader = ({total}) => {
     )
 };
 
-export default AppHeader;
+const mapStateToProps = ({total}) => {
+    return {
+        total
+    }
+};
+
+export default connect(mapStateToProps)(AppHeader);

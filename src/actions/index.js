@@ -17,17 +17,19 @@ const menuError = () => {
     };
 };
 
-const addedToCard = (id) => {
+const addedToCard = (id, price) => {
     return {
         type: 'ITEM_ADD_TO_CARD',
-        payload: id
+        payload: id,
+        price: price
     };
 };
 
-const deleteFromCard = (id) => {
+const deleteFromCard = (id, price) => {
     return {
         type: 'ITEM_REMOVE_FROM_CARD',
-        payload: id
+        payload: id,
+        price: price
     };
 };
 
