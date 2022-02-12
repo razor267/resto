@@ -68,9 +68,14 @@ const reducer = (state = initialState, action) => {
                         ...state.items.slice(itemIndex + 1)
                     ],
                     total: state.total - action.price
-                }
+                };
             }
-
+        case 'RESET_ITEMS':
+            return {
+                ...state,
+                items: [],
+                total: 0
+            };
         default:
             return state;
     }

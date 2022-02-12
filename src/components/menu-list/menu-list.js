@@ -56,7 +56,7 @@ const mapDispatchToProps = {
     menuLoaded,
     menuRequested,
     menuError,
-    addedToCard
+    addedToCard,
 };
 
 export default WithRestoService()(connect(mapStateToProps, mapDispatchToProps)(MenuList));

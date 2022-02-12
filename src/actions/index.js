@@ -33,10 +33,17 @@ const deleteFromCard = (id, price) => {
     };
 };
 
+const resetItems = () => {
+    return {
+        type: 'RESET_ITEMS'
+    };
+};
+
 export {
     menuLoaded,
     menuRequested,
     menuError,
     addedToCard,
-    deleteFromCard
+    deleteFromCard,
+    resetItems
 };
