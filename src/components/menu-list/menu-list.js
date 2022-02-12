@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import MenuListItem from '../menu-list-item';
 import {connect} from 'react-redux';
 import WithRestoService from "../hoc";
-import {addedToCard, menuError, menuLoaded, menuRequested} from "../../actions";
+import {addedToCard, isEmpty, isOrder, menuError, menuLoaded, menuRequested} from "../../actions";
 import './menu-list.scss';
 import Spinner from "../spinner";
 import Error from "../error";
@@ -19,7 +19,7 @@ class MenuList extends Component {
     }
 
     render() {
-        const {menuItems, loading, error, addedToCard} = this.props;
+        const {menuItems, loading, error, addedToCard, isOrder, isEmpty} = this.props;
 
         if (error) {
             return <Error/>
@@ -36,7 +36,11 @@ class MenuList extends Component {
                         return <MenuListItem
                             key={menuItem.id}
                             menuItem={menuItem}
-                            onAddToCard={() => addedToCard(menuItem.id, menuItem.price)}/>
+                            onAddToCard={() => {
+                                addedToCard(menuItem.id, menuItem.price)
+                                isOrder(false);
+                                isEmpty(false);
+                            }}/>
                     })
                 }
             </ul>
@@ -48,7 +52,9 @@ const mapStateToProps = (state) => {
     return {
         menuItems: state.menu,
         loading: state.loading,
-        error: state.error
+        error: state.error,
+        ordered: state.ordered,
+        emptyCart: state.emptyCart
     }
 };
 
@@ -57,6 +63,8 @@ const mapDispatchToProps = {
     menuRequested,
     menuError,
     addedToCard,
+    isOrder,
+    isEmpty
 };
 
 export default WithRestoService()(connect(mapStateToProps, mapDispatchToProps)(MenuList));

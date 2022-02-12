@@ -3,7 +3,9 @@ const initialState = {
     loading: true,
     error: false,
     items: [],
-    total: 0
+    total: 0,
+    ordered: false,
+    emptyCart: true
 }
 
 const reducer = (state = initialState, action) => {
@@ -76,6 +78,16 @@ const reducer = (state = initialState, action) => {
                 items: [],
                 total: 0
             };
+        case 'IS_ORDER':
+            return {
+                ...state,
+                ordered: action.ordered
+            };
+        case 'IS_EMPTY':
+            return {
+                ...state,
+                emptyCart: action.emptyCart
+            }
         default:
             return state;
     }

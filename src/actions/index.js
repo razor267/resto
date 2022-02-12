@@ -39,11 +39,27 @@ const resetItems = () => {
     };
 };
 
+const isOrder = (ordered) => {
+    return {
+        type: 'IS_ORDER',
+        ordered
+    };
+};
+
+const isEmpty = (value) => {
+    return {
+        type: 'IS_EMPTY',
+        emptyCart: value
+    }
+}
+
 export {
     menuLoaded,
     menuRequested,
     menuError,
     addedToCard,
     deleteFromCard,
-    resetItems
+    resetItems,
+    isOrder,
+    isEmpty
 };

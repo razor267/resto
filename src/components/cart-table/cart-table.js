@@ -1,10 +1,40 @@
 import React from 'react';
 import './cart-table.scss';
 import {connect} from "react-redux";
-import {deleteFromCard, resetItems} from "../../actions";
+import {deleteFromCard, isEmpty, isOrder, resetItems} from "../../actions";
 import {postData} from "../../services/resto-service";
 
-const CartTable = ({items, deleteFromCard, resetItems}) => {
+const CartTable = ({items, deleteFromCard, resetItems, isOrder, ordered, isEmpty, emptyCart}) => {
+
+    if(items.length === 0) {
+        isEmpty(true);
+    }
+
+    let btnClasses = "";
+    let btnDisabled = null;
+    if (emptyCart) {
+        btnClasses = "cart__btn cart__btn__dis"
+        btnDisabled = true;
+    } else {
+        btnClasses = "cart__btn"
+        btnDisabled = false;
+    }
+
+    const ViewOrder = () => {
+        if (ordered) {
+            return (
+                <>
+                    Заказ успешно отправлен
+                </>
+            )
+        } else {
+            return (
+                <>
+                    Ваш заказ:
+                </>
+            )
+        }
+    }
 
     const sendOrder = (items) => {
         postData('http://localhost:3000/requests', JSON.stringify(items))
@@ -12,12 +42,14 @@ const CartTable = ({items, deleteFromCard, resetItems}) => {
                 console.log(`Заказ отправлен. Содежримое заказа:`);
                 console.log(data);
                 resetItems();
+                isOrder(true);
+                isEmpty(true);
             }).catch(() => console.log('ERROR'))
     }
 
     return (
         <>
-            <div className="cart__title">Ваш заказ:</div>
+            <div className="cart__title"><ViewOrder/></div>
             <div className="cart__list">
                 {
                     items.map(item => {
@@ -34,20 +66,24 @@ const CartTable = ({items, deleteFromCard, resetItems}) => {
                     })
                 }
             </div>
-            <button onClick={() => sendOrder(items)} className="cart__btn">Send order</button>
+            <button disabled={btnDisabled} onClick={() => sendOrder(items)} className={btnClasses}>Send order</button>
         </>
     );
 };
 
-const mapStateToProps = ({items}) => {
+const mapStateToProps = ({items, ordered, emptyCart}) => {
     return {
-        items
+        items,
+        ordered,
+        emptyCart
     }
 };
 
 const mapDispatchToProps = {
     deleteFromCard,
-    resetItems
+    resetItems,
+    isOrder,
+    isEmpty
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartTable);
