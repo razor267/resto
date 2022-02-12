@@ -21,7 +21,7 @@ const addedToCard = (id, price) => {
     return {
         type: 'ITEM_ADD_TO_CARD',
         payload: id,
-        price: price
+        price
     };
 };
 
@@ -29,7 +29,7 @@ const deleteFromCard = (id, price) => {
     return {
         type: 'ITEM_REMOVE_FROM_CARD',
         payload: id,
-        price: price
+        price
     };
 };
 

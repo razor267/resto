@@ -28,11 +28,19 @@ const reducer = (state = initialState, action) => {
         case 'ITEM_ADD_TO_CARD':
             const id = action.payload;
             const item = state.menu.find(item => item.id === id)
+            let count = 1;
+            state.items.forEach(element => {
+                if (element.id === item.id) {
+                    count = element.count + 1;
+                    state.items.splice(state.items.indexOf(element), 1)
+                }
+            })
             const newItem = {
-                title: item.title,
+                id: item.id,
                 price: item.price,
+                title: item.title,
                 url: item.url,
-                id: item.id
+                count
             };
             return {
                 ...state,
@@ -45,14 +53,24 @@ const reducer = (state = initialState, action) => {
         case 'ITEM_REMOVE_FROM_CARD':
             const idx = action.payload;
             const itemIndex = state.items.findIndex(item => item.id === idx);
-            return {
-                ...state,
-                items: [
-                    ...state.items.slice(0, itemIndex),
-                    ...state.items.slice(itemIndex + 1)
-                ],
-                total: state.total - action.price
+            if (state.items[itemIndex].count > 1) {
+                state.items[itemIndex].count--;
+                return {
+                    ...state,
+                    items: [...state.items],
+                    total: state.total - action.price
+                }
+            } else {
+                return {
+                    ...state,
+                    items: [
+                        ...state.items.slice(0, itemIndex),
+                        ...state.items.slice(itemIndex + 1)
+                    ],
+                    total: state.total - action.price
+                }
             }
+
         default:
             return state;
     }

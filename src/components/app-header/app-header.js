@@ -5,7 +5,6 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
 const AppHeader = ({total}) => {
-    debugger
     return (
         <header className="header">
             <Link to='/menu'>
