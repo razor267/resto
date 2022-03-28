@@ -12,13 +12,14 @@
 ```bash
 npm start
 ```
-</br>**Внимание!** База данных фейковая и реализована с помощью json-server.
+**Внимание!** База данных фейковая и реализована с помощью json-server.
 Для запуска базы:
 ```bash
 json-server src/db.json
 ```
-p.s. json-server и приложение React должны быть запущены на **РАЗНЫХ** портах.
-<div align="center"><img src="https://i.ibb.co/7RVvQbp/preview-project.gif" alt="ReviewProject"/></div>
+**P.S.** json-server и приложение React должны быть запущены на **РАЗНЫХ** портах.
+# Interface
+<p align="center"><img src="https://i.ibb.co/tKqGjnd/preview-project.gif" alt="ReviewProject"/></p>
 <div align="right">
   <img src="https://i.ibb.co/XLPJSyM/react-icon.png" alt="react" height="40px"/>
   <img src="https://i.ibb.co/PrCNpDg/redux-icon.png" alt="redux" height="40px"/>
